@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        main {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .task-list {
+            margin-top: 20px;
+        }
+
+        .task {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .task h3 {
+            margin: 0;
+        }
+
+        .task p {
+            margin: 5px 0;
+        }
+
+        .priority {
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .low {
+            background-color: #4CAF50;
+        }
+
+        .medium {
+            background-color: #FF9800;
+        }
+
+        .high {
+            background-color: #F44336;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Task Management System</h1>
+    </header>
+
+    <main>
+        <h2>Add New Task</h2>
+        <form id="taskForm">
+            <input type="text" id="taskTitle" placeholder="Task Title" required>
+            <textarea id="taskDescription" placeholder="Task Description" required></textarea>
+            <input type="date" id="taskDueDate" required>
+            <select id="taskPriority" required>
+                <option value="low">Low Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="high">High Priority</option>
+            </select>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <div class="task-list" id="taskList">
+            <h2>Existing Tasks</h2>
+        </div>
+    </main>
+
+    <script>
+        const taskForm = document.getElementById('taskForm');
+        const taskList = document.getElementById('taskList');
+
+        taskForm.addEventListener('submit', function(event) {
+            Event.preventDefault();
+
+            // Get form values
+            const title = document.getElementById('taskTitle').value;
+            const description = document.getElementById('taskDescription').value;
+            const dueDate = document.getElementById('taskDueDate').value;
+            const priority = document.getElementById('taskPriority').value;
+
+            // Create new task
+            const task = document.createElement('div');
+            task.classList.add('task');
+
+            // Add task title, description, due date and priority
+            task.innerHTML = `
+                <h3>${title}</h3>
+                <p><strong>Description:</strong> ${description}</p>
+                <p><strong>Due Date:</strong> ${dueDate}</p>
+                <p><strong>Priority:</strong> <span class="priority ${priority}">${priority.charAt(0).toUpperCase() + priority.slice(1)}</span></p>
+            `;
+
+            // Add the task to the task list
+            taskList.appendChild(task);
+
+            // Clear form fields
+            taskForm.reset();
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
