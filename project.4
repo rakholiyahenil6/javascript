@@ -1,0 +1,81 @@
+// Stack Implementation with Operations
+class Stack {
+    constructor() {
+        this.items = [];
+    }
+
+    isEmpty() {
+        return this.items.length === 0;
+    }
+
+    push(element) {
+        this.items.push(element);
+    }
+
+    pop() {
+        if (this.isEmpty()) {
+            console.log("Stack Underflow");
+            return null;
+        }
+        return this.items.pop();
+    }
+
+    topElement() {
+        return this.isEmpty() ? null : this.items[this.items.length - 1];
+    }
+
+    length() {
+        return this.items.length;
+    }
+}
+
+// Testing Stack Operations
+const stack = new Stack();
+stack.push(10);
+stack.push(20);
+stack.push(30);
+console.log("Top Element:", stack.topElement());
+console.log("Stack Length:", stack.length());
+stack.pop();
+console.log("Top Element after pop:", stack.topElement());
+/=================================================/
+
+// Next Greater Element using Stack
+function nextGreaterElement(arr) {
+    let stack = [];
+    let result = new Array(arr.length).fill(-1);
+
+    for (let i = arr.length - 1; i >= 0; i--) {
+        while (stack.length > 0 && stack[stack.length - 1] <= arr[i]) {
+            stack.pop();
+        }
+        if (stack.length > 0) {
+            result[i] = stack[stack.length - 1];
+        }
+        stack.push(arr[i]);
+    }
+    return result;
+}
+
+// Testing Next Greater Element
+let arr = [4, 5, 2, 25, 7, 8];
+console.log("Next Greater Elements:", nextGreaterElement(arr));
+/=================================================/
+
+// Reverse a String using Stack
+function reverseString(str) {
+    let stack = [];
+    for (let char of str) {
+        stack.push(char);
+    }
+    let reversedStr = "";
+    while (stack.length > 0) {
+        reversedStr += stack.pop();
+    }
+    return reversedStr;
+}
+
+// Testing String Reversal
+let str = "Hello";
+console.log("Original String:", str);
+console.log("Reversed String:", reverseString(str))
